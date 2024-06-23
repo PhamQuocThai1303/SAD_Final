@@ -3,7 +3,6 @@ USE IEEE.std_logic_1164.ALL;
 USE IEEE.numeric_std.ALL;
 
 PACKAGE sad_lib IS
-
     --main sad
     COMPONENT main_sad IS
         GENERIC (

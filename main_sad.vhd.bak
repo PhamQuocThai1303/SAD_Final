@@ -7,7 +7,7 @@ ENTITY main_sad IS
     GENERIC (
 	data_width : INTEGER := 8;
         size : INTEGER := 4;
-        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --"9"
+        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001"
     );
     PORT (
         Clk, Rst : IN STD_LOGIC;
@@ -37,7 +37,8 @@ BEGIN
     --output cua Re_C phu thuoc vao tin hieu ben trong
     Re_C <= Re_C_internal;
 
-
+
+    -- su dung tin hieu tu ben ngoai hoac tu controller
     datapath_comp : datapath
     GENERIC MAP(
         size,
@@ -48,7 +49,7 @@ BEGIN
         start,
         Data_A, Data_B,
         Addr_A, Addr_B,
-        We_A_combined, We_B_combined, Re_A, Re_B,  -- su dung tin hieu tu ben ngoai hoac tu controller
+        We_A_combined, We_B_combined, Re_A, Re_B,
         We_C, Re_C_internal,
         output_sel,
         Load_i,
@@ -57,13 +58,13 @@ BEGIN
         Output
     );
 
-
+    -- su dung tin hieu noi bo de kiem soat logic va trang thai he thong
     controller_comp : controller
     PORT MAP(
         Clk, Rst,
         start,
         i_lt_mtrx_sz,
-        We_A_internal, We_B_internal, Re_A, Re_B,   -- su dung tin hieu noi bo de kiem soat logic va trang thai he thong
+        We_A_internal, We_B_internal, Re_A, Re_B,
         We_C, Re_C_internal,
         output_sel,
         Load_i,

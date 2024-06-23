@@ -12,7 +12,7 @@ ENTITY controller IS
         We_C, Re_C : OUT STD_LOGIC;
         output_sel : OUT STD_LOGIC; --quyet dinh dau ra cua Controller, la A, B hay C
         Load_i : OUT STD_LOGIC;
-        Enable_i : OUT STD_LOGIC;
+        EN_i : OUT STD_LOGIC;
         Done : OUT STD_LOGIC
     );
 END ENTITY controller;
@@ -35,7 +35,7 @@ BEGIN
         '0';
     Re_C <= '1' WHEN state = s6 OR state = s0 ELSE
         '0';
-    Enable_i <= '1' WHEN state = s6 ELSE
+    EN_i <= '1' WHEN state = s6 ELSE
         '0';
     PROCESS (Clk, Rst)
     BEGIN

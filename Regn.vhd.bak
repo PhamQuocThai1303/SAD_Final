@@ -27,7 +27,7 @@ BEGIN
     PROCESS (Clk)
     BEGIN
         IF rising_edge(Clk) THEN
-            IF W_enable = '1' THEN --Luu du lieu
+            IF W_enable = '1' THEN
                 Mem_ele(to_integer(unsigned(Mem_addr))) <= Data_mem_in;
             END IF;
         END IF;
@@ -36,7 +36,7 @@ BEGIN
     PROCESS (Clk)
     BEGIN
         IF rising_edge(Clk) THEN
-            IF R_enable = '1' THEN  --Lay ra du lieu
+            IF R_enable = '1' THEN
                 Data_mem_out <= Mem_ele(to_integer(unsigned(Mem_addr)));
             END IF;
         END IF;

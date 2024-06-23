@@ -17,13 +17,13 @@ ARCHITECTURE rtl OF main_sad_tb IS
     SIGNAL Output : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL Re_C : STD_LOGIC;
 BEGIN
-    clock_signal : PROCESS
+    clk_signal : PROCESS
     BEGIN
         Clk <= '1';
         WAIT FOR 10 ns;
         Clk <= '0';
         WAIT FOR 10 ns;
-    END PROCESS; 
+    END PROCESS; -- clk_signal
 
     reset_sig : PROCESS
     BEGIN
@@ -31,7 +31,7 @@ BEGIN
         WAIT FOR 50 ns;
         Rst <= '0';
         WAIT;
-    END PROCESS; 
+    END PROCESS; -- rst_sig
 
     Data_A_sig : PROCESS
     BEGIN
