@@ -35,8 +35,7 @@ ARCHITECTURE rtl OF datapath IS
     SIGNAL Output_C : STD_LOGIC_VECTOR(7 DOWNTO 0);
 BEGIN
 
-    i_lt_mtrx_sz <= '0' WHEN i < matrix_size ELSE 
-       '1';
+    i_lt_mtrx_sz <= '0' WHEN i < matrix_size ELSE '1';
 
     Diff_AB <= Output_A - Output_B WHEN Output_A > Output_B ELSE (Output_B - Output_A);
 

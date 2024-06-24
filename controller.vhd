@@ -4,9 +4,9 @@ USE IEEE.numeric_std.ALL;
 
 ENTITY controller IS
     PORT (
-        Clk, Rst : IN STD_LOGIC;
-        start : IN STD_LOGIC;
-        i_lt_mtrx_sz : IN STD_LOGIC;
+        Clk, Rst :                  IN STD_LOGIC;
+        start :                     IN STD_LOGIC;
+        i_lt_mtrx_sz :              IN STD_LOGIC;
 
         We_A, We_B, Re_A, Re_B : OUT STD_LOGIC;
         We_C, Re_C : OUT STD_LOGIC;
@@ -25,15 +25,15 @@ BEGIN
         '0';
     output_sel <= '1' WHEN state = s0 ELSE
         '0';
-    We_C <= '1' WHEN state = s0 OR state = s5 ELSE
-        '0';
-    Load_i <= '1' WHEN state = s2 OR state = s0 ELSE
+    Load_i <= '1' WHEN state = s0 OR state = s2 ELSE
         '0';
     Re_A <= '1' WHEN state = s4 ELSE
         '0';
     Re_B <= '1' WHEN state = s4 ELSE
         '0';
-    Re_C <= '1' WHEN state = s6 OR state = s0 ELSE
+    Re_C <= '1' WHEN state = s0 OR state = s6 ELSE
+        '0';
+    We_C <= '1' WHEN state = s0 OR state = s5 ELSE
         '0';
     Enable_i <= '1' WHEN state = s6 ELSE
         '0';

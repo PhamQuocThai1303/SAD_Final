@@ -66,7 +66,7 @@ BEGIN
     i <= prevI;
     ----------------------------------------------------------------------------
 
-    MA : Regn
+    Reg_A : Regn
     PORT MAP(
         indx_A,
         Data_A,
@@ -76,7 +76,7 @@ BEGIN
         Output_A
     );
     
-    MB : Regn
+    Reg_B : Regn
     PORT MAP(
         indx_B,
         Data_B,
@@ -86,7 +86,7 @@ BEGIN
         Output_B
     );
 
-    MC : Regn
+    Reg_C : Regn
     PORT MAP(
         indx_C,
         Data_C,

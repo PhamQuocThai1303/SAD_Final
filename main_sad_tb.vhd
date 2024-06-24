@@ -25,7 +25,7 @@ BEGIN
         WAIT FOR 10 ns;
     END PROCESS; 
 
-    reset_sig : PROCESS
+    reset_signal : PROCESS
     BEGIN
         Rst <= '1';
         WAIT FOR 50 ns;
@@ -33,7 +33,7 @@ BEGIN
         WAIT;
     END PROCESS; 
 
-    Data_A_sig : PROCESS
+    Data_A_signal : PROCESS
     BEGIN
         WAIT FOR 100 ns;
         Data_A <= "00001010";
@@ -55,9 +55,9 @@ BEGIN
         Data_A <= "00000001";
         WAIT;
 
-    END PROCESS; -- Data_A_sig
+    END PROCESS; 
 
-    Addr_A_in_sig : PROCESS
+    Addr_A_signal : PROCESS
     BEGIN
         WAIT FOR 100 ns;
         Addr_A <= "0000";
@@ -79,9 +79,9 @@ BEGIN
         Addr_A <= "1000";
         WAIT;
 
-    END PROCESS; -- Addr_A_in_sig
+    END PROCESS; 
 
-    Data_B_sig : PROCESS
+    Data_B_signal : PROCESS
     BEGIN
         WAIT FOR 100 ns;
         Data_B <= "00000011";
@@ -103,9 +103,9 @@ BEGIN
         Data_B <= "00001000";
         WAIT;
 
-    END PROCESS; -- Data_B_sig
+    END PROCESS;
 
-    Addr_B_in_sig : PROCESS
+    Addr_B_signal : PROCESS
     BEGIN
         WAIT FOR 100 ns;
         Addr_B <= "0000";
@@ -127,9 +127,9 @@ BEGIN
         Addr_B <= "1000";
         WAIT;
 
-    END PROCESS; -- Addr_B_in_sig
+    END PROCESS;
 
-    WE_A_sig : PROCESS
+    We_A_signal : PROCESS
     BEGIN
         WAIT FOR 100 ns;
         WAIT FOR 10 ns;
@@ -178,9 +178,9 @@ BEGIN
         We_A <= '0';
         WAIT FOR 70 ns;
         WAIT;
-    END PROCESS; -- WE_A_sig
+    END PROCESS;
 
-    WE_B_sig : PROCESS
+    We_B_signal : PROCESS
     BEGIN
         WAIT FOR 100 ns;
         WAIT FOR 10 ns;
@@ -229,17 +229,17 @@ BEGIN
         We_B <= '0';
         WAIT FOR 70 ns;
         WAIT;
-    END PROCESS; -- WE_B_sig
+    END PROCESS;
 
-    start_sig : PROCESS
+    start_signal : PROCESS
     BEGIN
         start <= '0';
         WAIT FOR 1100 ns;
         start <= '1';
         WAIT;
-    END PROCESS; -- start_sig
+    END PROCESS;
 
-    test : main_sad
+    fin_TB : main_sad
     PORT MAP(
         Clk, Rst,
         start,
