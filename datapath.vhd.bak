@@ -33,7 +33,7 @@ ARCHITECTURE rtl OF datapath IS
     SIGNAL i : 				 STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0); --gia tri bo dem dia chi
     SIGNAL prevI : 			 STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0);
     SIGNAL indx_A, indx_B, indx_C :      STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0); --dia chi cua A va B,C
-    SIGNAL Output_A, Output_B, Diff_AB : STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0);
+    SIGNAL Output_A, Output_B, Diff_AB : STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
     SIGNAL Data_C : 			 STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
     SIGNAL Output_C : 			 STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
 BEGIN

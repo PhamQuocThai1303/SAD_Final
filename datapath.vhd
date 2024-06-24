@@ -67,31 +67,31 @@ BEGIN
     --Khoi tao cac unit memory de luu tru A,B,C
     Reg_A : Regn
     PORT MAP(
+	Clk,
         indx_A,
-        Data_A,
         We_A,
         Re_A,
-        Clk,
+        Data_A,
         Output_A
     );
     
     Reg_B : Regn
     PORT MAP(
+        Clk,
         indx_B,
-        Data_B,
         We_B,
         Re_B,
-        Clk,
+        Data_B,
         Output_B
     );
 
     Reg_C : Regn
     PORT MAP(
+        Clk,
         indx_C,
-        Data_C,
         We_C,
         Re_C,
-        Clk,
+        Data_C,
         Output_C
     );
 

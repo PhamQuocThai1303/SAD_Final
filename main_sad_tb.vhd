@@ -14,13 +14,13 @@ END ENTITY main_sad_tb;
 ARCHITECTURE rtl OF main_sad_tb IS
     SIGNAL Clk, Rst :           STD_LOGIC;
     SIGNAL start : 		STD_LOGIC;
-    SIGNAL Data_A :     	STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL Addr_A :     	STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL Data_A :     	STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
+    SIGNAL Addr_A :     	STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0);
     SIGNAL We_A : 		STD_LOGIC;
-    SIGNAL Data_B :     	STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL Addr_B :     	STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL Data_B :     	STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
+    SIGNAL Addr_B :     	STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0);
     SIGNAL We_B : 		STD_LOGIC;
-    SIGNAL Output : 		STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL Output : 		STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
     SIGNAL Re_C : 		STD_LOGIC;
     SIGNAL Done : 		STD_LOGIC;
 BEGIN
