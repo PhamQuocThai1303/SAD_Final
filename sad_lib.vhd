@@ -9,7 +9,7 @@ PACKAGE sad_lib IS
         GENERIC (
 	data_width :  INTEGER := 8;
         index_width : INTEGER := 4;
-        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
+        array_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
     );
     PORT (
 	--input
@@ -36,7 +36,7 @@ PACKAGE sad_lib IS
         GENERIC (
 	data_width :  INTEGER := 8;
         index_width : INTEGER := 4;
-        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
+        array_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
     );
     PORT (
 	--input
@@ -52,7 +52,7 @@ PACKAGE sad_lib IS
         Enable_i : 			 IN STD_LOGIC; --enable cua bo dem i
 
 	--output
-        i_lt_mtrx_sz : 			 OUT STD_LOGIC;
+        i_lt_arr_sz : 			 OUT STD_LOGIC;
         Output : 			 OUT STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0)
     );
     END COMPONENT;
@@ -66,7 +66,7 @@ PACKAGE sad_lib IS
 	--input
         Clk, Rst :                  IN STD_LOGIC;
         start :                     IN STD_LOGIC;
-        i_lt_mtrx_sz :              IN STD_LOGIC;
+        i_lt_arr_sz :              IN STD_LOGIC;
 
 	--output
         We_A, We_B :                OUT STD_LOGIC;
@@ -87,7 +87,7 @@ PACKAGE sad_lib IS
         GENERIC (
 	data_width :  INTEGER := 8;
         index_width : INTEGER := 4;
-        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
+        array_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
     );
     PORT (
 	--input

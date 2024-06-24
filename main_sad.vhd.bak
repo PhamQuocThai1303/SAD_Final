@@ -7,7 +7,7 @@ ENTITY main_sad IS
     GENERIC (
 	data_width :  INTEGER := 8;
         index_width : INTEGER := 4;
-        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
+        array_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
     );
     PORT (
 	--input
@@ -29,7 +29,7 @@ END ENTITY main_sad;
 
 ARCHITECTURE rtl OF main_sad IS
     SIGNAL We_A_internal, We_B_internal : 	      STD_LOGIC;  --Tin hieu ben trong
-    SIGNAL Re_A, Re_B: 				      STD_LOGIC
+    SIGNAL Re_A, Re_B: 				      STD_LOGIC;
     SIGNAL We_A_combined, We_B_combined : 	      STD_LOGIC;  --Tin hieu ket hop
     SIGNAL We_C, Re_C_internal : 		      STD_LOGIC;
     SIGNAL output_sel : 			      STD_LOGIC;
@@ -47,7 +47,7 @@ BEGIN
     GENERIC MAP(
 	data_width,
         index_width,
-        matrix_size
+        array_size
     )
     PORT MAP(
         Clk, Rst,

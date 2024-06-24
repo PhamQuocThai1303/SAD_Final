@@ -7,7 +7,7 @@ ENTITY main_sad_tb IS
     GENERIC (
 	data_width :  INTEGER := 8;
         index_width : INTEGER := 4;
-        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
+        array_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
     );
 END ENTITY main_sad_tb;
 
@@ -37,33 +37,49 @@ ARCHITECTURE rtl OF main_sad_tb IS
     );
 BEGIN
 
+
+
+    fin_TB : main_sad
+    GENERIC MAP(
+	data_width,
+        index_width,
+        array_size
+    )
+    PORT MAP(
+        Clk, Rst,
+        start,
+        Data_A,
+        Addr_A,
+	We_A,
+	Data_B,
+        Addr_B,
+	We_B,
+        Output,
+        Re_C,
+	Done
+    );
+
     --start signal
     start_signal : PROCESS
     BEGIN
-        start <= '0';
-        WAIT FOR clk_period*100 ;
-        start <= '1';
-        WAIT;
+        start <= '0'; WAIT FOR clk_period*100 ;
+        start <= '1'; WAIT;
     END PROCESS;
     --
 
     --clock signal
     clock_signal : PROCESS
     BEGIN
-        Clk <= '1';
-        WAIT FOR clk_period ;
-        Clk <= '0';
-        WAIT FOR clk_period ;
+        Clk <= '1'; WAIT FOR clk_period ;
+        Clk <= '0'; WAIT FOR clk_period ;
     END PROCESS; 
     --
 
     --reset signal
     reset_signal : PROCESS
     BEGIN
-        Rst <= '1';
-        WAIT FOR clk_period*5;
-        Rst <= '0';
-        WAIT;
+        Rst <= '1'; WAIT FOR clk_period*5;
+        Rst <= '0'; WAIT;
     END PROCESS; 
     --
 
@@ -145,24 +161,4 @@ BEGIN
     END PROCESS;
     --
 
-
-    fin_TB : main_sad
-    GENERIC MAP(
-	data_width,
-        index_width,
-        matrix_size
-    )
-    PORT MAP(
-        Clk, Rst,
-        start,
-        Data_A,
-        Addr_A,
-	We_A,
-	Data_B,
-        Addr_B,
-	We_B,
-        Output,
-        Re_C,
-	Done
-    );
 END ARCHITECTURE rtl;

@@ -7,7 +7,7 @@ ENTITY controller IS
 	--input
         Clk, Rst :                  IN STD_LOGIC;
         start :                     IN STD_LOGIC;
-        i_lt_mtrx_sz :              IN STD_LOGIC;
+        i_lt_arr_sz :              IN STD_LOGIC;
 
 	--output
         We_A, We_B :                OUT STD_LOGIC;
@@ -24,15 +24,6 @@ ARCHITECTURE rtl OF controller IS
     TYPE State_stage IS (s0, s1, s2, s3, s4, s5, s6, s7);
     SIGNAL state : State_stage;
 BEGIN
-
-    Done <= '1'       WHEN state = s7 ELSE '0';
-    output_sel <= '1' WHEN state = s0 ELSE '0';
-    Load_i <= '1'     WHEN state = s2 ELSE '0';
-    Enable_i <= '1'   WHEN state = s6 ELSE '0';
-    Re_A <= '1'       WHEN state = s4 ELSE '0';
-    Re_B <= '1'       WHEN state = s4 ELSE '0';
-    Re_C <= '1'       WHEN state = s0 OR state = s6 ELSE '0'; --khoi tao viec doc ra C
-    We_C <= '1'       WHEN state = s0 OR state = s5 ELSE '0'; --khoi tao viec viet vao C
 
     PROCESS (Clk, Rst)
     BEGIN
@@ -51,7 +42,7 @@ BEGIN
                 WHEN s2 =>
                  state <= s3;
                 WHEN s3 =>
-                 IF i_lt_mtrx_sz = '0' THEN
+                 IF i_lt_arr_sz = '0' THEN
                      state <= s4;
                  ELSE
                      state <= s7;
@@ -72,5 +63,15 @@ BEGIN
             END CASE;
         END IF;
     END PROCESS;
+
+    --combinational logic
+    Done <= '1'       WHEN state = s7 ELSE '0';
+    output_sel <= '1' WHEN state = s0 ELSE '0';
+    Load_i <= '1'     WHEN state = s2 ELSE '0';
+    Enable_i <= '1'   WHEN state = s6 ELSE '0';
+    Re_A <= '1'       WHEN state = s4 ELSE '0';
+    Re_B <= '1'       WHEN state = s4 ELSE '0';
+    Re_C <= '1'       WHEN state = s0 OR state = s6 ELSE '0'; --khoi tao viec doc ra C
+    We_C <= '1'       WHEN state = s0 OR state = s5 ELSE '0'; --khoi tao viec viet vao C
 
 END ARCHITECTURE rtl;

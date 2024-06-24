@@ -6,7 +6,7 @@ ENTITY Regn IS
     GENERIC (
 	data_width :  INTEGER := 8;
         index_width : INTEGER := 4;
-        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
+        array_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
     );
     PORT (
 	--input

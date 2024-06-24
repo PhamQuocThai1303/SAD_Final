@@ -7,7 +7,7 @@ ENTITY main_sad IS
     GENERIC (
 	data_width :  INTEGER := 8;
         index_width : INTEGER := 4;
-        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
+        array_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
     );
     PORT (
 	--input
@@ -34,7 +34,7 @@ ARCHITECTURE rtl OF main_sad IS
     SIGNAL We_C, Re_C_internal : 		      STD_LOGIC;
     SIGNAL output_sel : 			      STD_LOGIC;
     SIGNAL Load_i, Enable_i : 			      STD_LOGIC;
-    SIGNAL i_lt_mtrx_sz : 			      STD_LOGIC;
+    SIGNAL i_lt_arr_sz : 			      STD_LOGIC;
 BEGIN
     --tin hieu combined can co tin hieu tu ben ngoai hoac ben trong he thong
     We_A_combined <= We_A OR We_A_internal;
@@ -47,7 +47,7 @@ BEGIN
     GENERIC MAP(
 	data_width,
         index_width,
-        matrix_size
+        array_size
     )
     PORT MAP(
         Clk, Rst,
@@ -60,7 +60,7 @@ BEGIN
         output_sel,
         Load_i,
         Enable_i,
-        i_lt_mtrx_sz,
+        i_lt_arr_sz,
         Output
     );
 
@@ -69,7 +69,7 @@ BEGIN
     PORT MAP(
         Clk, Rst,
         start,
-        i_lt_mtrx_sz,
+        i_lt_arr_sz,
         We_A_internal, We_B_internal,  -- su dung tin hieu noi bo de kiem soat logic va trang thai he thong
 	Re_A, Re_B,   
         We_C, Re_C_internal,
