@@ -4,19 +4,35 @@ USE IEEE.numeric_std.ALL;
 USE work.sad_lib.ALL;
 
 ENTITY main_sad_tb IS
-
+    GENERIC (
+	data_width :  INTEGER := 8;
+        index_width : INTEGER := 4;
+        matrix_size : STD_LOGIC_VECTOR(3 DOWNTO 0) := "1001" --vector 4bit voi 9 phan tu
+    );
 END ENTITY main_sad_tb;
 
 ARCHITECTURE rtl OF main_sad_tb IS
-    SIGNAL Clk, Rst : STD_LOGIC;
-    SIGNAL start : STD_LOGIC;
-    SIGNAL Data_A, Data_B : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL We_A, We_B : STD_LOGIC;
-    SIGNAL Addr_A, Addr_B : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    SIGNAL Done : STD_LOGIC;
-    SIGNAL Output : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL Re_C : STD_LOGIC;
+    SIGNAL Clk, Rst :           STD_LOGIC;
+    SIGNAL start : 		STD_LOGIC;
+    SIGNAL Data_A :     	STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL Addr_A :     	STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL We_A : 		STD_LOGIC;
+    SIGNAL Data_B :     	STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL Addr_B :     	STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL We_B : 		STD_LOGIC;
+    SIGNAL Done : 		STD_LOGIC;
+    SIGNAL Output : 		STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL Re_C : 		STD_LOGIC;
 BEGIN
+
+    start_signal : PROCESS
+    BEGIN
+        start <= '0';
+        WAIT FOR 1100 ns;
+        start <= '1';
+        WAIT;
+    END PROCESS;
+
     clock_signal : PROCESS
     BEGIN
         Clk <= '1';
@@ -231,23 +247,24 @@ BEGIN
         WAIT;
     END PROCESS;
 
-    start_signal : PROCESS
-    BEGIN
-        start <= '0';
-        WAIT FOR 1100 ns;
-        start <= '1';
-        WAIT;
-    END PROCESS;
 
-    TB : main_sad
+    fin_TB : main_sad
+    GENERIC MAP(
+	data_width,
+        index_width,
+        matrix_size
+    )
     PORT MAP(
         Clk, Rst,
         start,
-        Data_A, Data_B,
-        Addr_A, Addr_B,
-	We_A, We_B,
-        Done,
+        Data_A,
+        Addr_A,
+	We_A,
+	Data_B,
+        Addr_B,
+	We_B,
         Output,
-        Re_C
+        Re_C,
+	Done
     );
 END ARCHITECTURE rtl;
