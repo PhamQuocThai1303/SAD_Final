@@ -28,7 +28,8 @@ ENTITY main_sad IS
 END ENTITY main_sad;
 
 ARCHITECTURE rtl OF main_sad IS
-    SIGNAL We_A_internal, We_B_internal, Re_A, Re_B : STD_LOGIC;  --Tin hieu ben trong
+    SIGNAL We_A_internal, We_B_internal : 	      STD_LOGIC;  --Tin hieu ben trong
+    SIGNAL Re_A, Re_B: 				      STD_LOGIC;
     SIGNAL We_A_combined, We_B_combined : 	      STD_LOGIC;  --Tin hieu ket hop
     SIGNAL We_C, Re_C_internal : 		      STD_LOGIC;
     SIGNAL output_sel : 			      STD_LOGIC;

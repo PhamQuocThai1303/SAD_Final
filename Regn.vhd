@@ -22,7 +22,7 @@ ENTITY Regn IS
 END Regn;
 
 ARCHITECTURE rtl OF Regn IS
-    -- Tao 1 vung memory co tong cong 128bit, 8 dia chi, moi dia chi 8 bit du lieu
+    -- Tao 1 vung memory co tong cong 72bit, 9 dia chi, moi dia chi 8 bit du lieu
     TYPE Mem_arr IS ARRAY (0 TO 8) OF STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
     -- Khoi tao 9 gia tri bang 0
     SIGNAL Mem_ele : Mem_arr := (
@@ -31,20 +31,26 @@ ARCHITECTURE rtl OF Regn IS
     );
 
 BEGIN
+
     PROCESS (Clk)
+    	VARIABLE addr : integer;
     BEGIN
         IF rising_edge(Clk) THEN
+	    addr := to_integer(unsigned(Mem_addr)); --luu lai dia chi vao addr
             IF W_enable = '1' THEN --Luu du lieu
-                Mem_ele(to_integer(unsigned(Mem_addr))) <= Data_mem_in;
+                Mem_ele(addr) <= Data_mem_in;
             END IF;
         END IF;
     END PROCESS;
 
+
     PROCESS (Clk)
+    	VARIABLE addr : integer;
     BEGIN
         IF rising_edge(Clk) THEN
+	    addr := to_integer(unsigned(Mem_addr)); --luu lai dia chi vao addr
             IF R_enable = '1' THEN  --Lay ra du lieu
-                Data_mem_out <= Mem_ele(to_integer(unsigned(Mem_addr)));
+                Data_mem_out <= Mem_ele(addr);
             END IF;
         END IF;
     END PROCESS;

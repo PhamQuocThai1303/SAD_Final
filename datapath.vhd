@@ -39,11 +39,22 @@ ARCHITECTURE rtl OF datapath IS
 BEGIN
 
     i_lt_mtrx_sz <= '0' WHEN i < matrix_size ELSE '1'; --kiem tra index
+
     Diff_AB <= Output_A - Output_B WHEN Output_A > Output_B ELSE (Output_B - Output_A); --tinh sai so giua 2 data
     Data_C <= "00000000" WHEN output_sel = '1' ELSE Output_C + Diff_AB; --output_sel = 1 -> port C; =0 -> port A,B
     
-    indx_A <= i WHEN start = '1' ELSE Addr_A; -- Khi khong trong qua trinh SAD,thong qua Addr, dung de ghi du lieu vao cac vi tri
-    indx_B <= i WHEN start = '1' ELSE Addr_B; -- cu the trong mem, khi co SAD moi luu index vao de tinh Diff
+    PROCESS(start, i, Addr_A, Addr_B)  -- Khi khong trong qua trinh SAD,thong qua Addr, dung de ghi du lieu vao cac vi tri
+    BEGIN				--cu the trong mem, khi co SAD moi luu index vao de tinh Diff
+    	CASE start IS
+            WHEN '1' => --trong qua trinh SAD
+            	indx_A <= i;
+            	indx_B <= i;
+            WHEN OTHERS => --khong trong qua trinh SAD
+            	indx_A <= Addr_A;
+            	indx_B <= Addr_B;
+    END CASE;
+    END PROCESS;
+
     indx_C <= i;
     --luu tru output
     Output <= Output_C;
