@@ -31,19 +31,19 @@ END ENTITY datapath;
 
 ARCHITECTURE rtl OF datapath IS
     SIGNAL i : 				 STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0); --gia tri bo dem dia chi
-    SIGNAL prevI : 			 STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0);
+    SIGNAL prevI : 			 STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0); --gia tri i truoc do
     SIGNAL indx_A, indx_B, indx_C :      STD_LOGIC_VECTOR((index_width - 1) DOWNTO 0); --dia chi cua A va B,C
     SIGNAL Output_A, Output_B, Diff_AB : STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
     SIGNAL Data_C : 			 STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
     SIGNAL Output_C : 			 STD_LOGIC_VECTOR((data_width - 1) DOWNTO 0);
 BEGIN
 
-    i_lt_mtrx_sz <= '0' WHEN i < matrix_size ELSE '1';
-    Diff_AB <= Output_A - Output_B WHEN Output_A > Output_B ELSE (Output_B - Output_A);
-    Data_C <= "00000000" WHEN output_sel = '1' ELSE (Output_C + Diff_AB); --output_sel = 1 -> port C; =0 -> port A,B
-    -- Khi khong trong qua trinh SAD, dia chi cua A,B dc luu lai thanh dia chi A,B ban dau
-    indx_A <= i WHEN start = '1' ELSE Addr_A;
-    indx_B <= i WHEN start = '1' ELSE Addr_B;
+    i_lt_mtrx_sz <= '0' WHEN i < matrix_size ELSE '1'; --kiem tra index
+    Diff_AB <= Output_A - Output_B WHEN Output_A > Output_B ELSE (Output_B - Output_A); --tinh sai so giua 2 data
+    Data_C <= "00000000" WHEN output_sel = '1' ELSE Output_C + Diff_AB; --output_sel = 1 -> port C; =0 -> port A,B
+    
+    indx_A <= i WHEN start = '1' ELSE Addr_A; -- Khi khong trong qua trinh SAD,thong qua Addr, dung de ghi du lieu vao cac vi tri
+    indx_B <= i WHEN start = '1' ELSE Addr_B; -- cu the trong mem, khi co SAD moi luu index vao de tinh Diff
     indx_C <= i;
     --luu tru output
     Output <= Output_C;

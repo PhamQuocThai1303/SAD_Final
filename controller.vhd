@@ -27,12 +27,12 @@ BEGIN
 
     Done <= '1'       WHEN state = s7 ELSE '0';
     output_sel <= '1' WHEN state = s0 ELSE '0';
-    Load_i <= '1'     WHEN state = s0 OR state = s2 ELSE '0';
+    Load_i <= '1'     WHEN state = s2 ELSE '0';
     Enable_i <= '1'   WHEN state = s6 ELSE '0';
     Re_A <= '1'       WHEN state = s4 ELSE '0';
     Re_B <= '1'       WHEN state = s4 ELSE '0';
-    Re_C <= '1'       WHEN state = s0 OR state = s6 ELSE '0';
-    We_C <= '1'       WHEN state = s0 OR state = s5 ELSE '0';
+    Re_C <= '1'       WHEN state = s0 OR state = s6 ELSE '0'; --khoi tao viec doc ra C
+    We_C <= '1'       WHEN state = s0 OR state = s5 ELSE '0'; --khoi tao viec viet vao C
 
     PROCESS (Clk, Rst)
     BEGIN
